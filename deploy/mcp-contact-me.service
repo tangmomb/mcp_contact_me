@@ -1,0 +1,24 @@
+[Unit]
+Description=MCP Contact Me
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mcp-contact-me
+Group=mcp-contact-me
+WorkingDirectory=/srv/mcp_contact_me
+EnvironmentFile=/srv/mcp_contact_me/.env
+ExecStart=/srv/mcp_contact_me/.venv/bin/mcp-contact-me
+Restart=on-failure
+RestartSec=5
+
+# Durcissement de base du service.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/mcp_contact_me
+
+[Install]
+WantedBy=multi-user.target

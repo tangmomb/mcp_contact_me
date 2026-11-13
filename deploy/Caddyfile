@@ -1,0 +1,22 @@
+# Bloc à ajouter au Caddyfile existant ; ne pas écraser /etc/caddy/Caddyfile.
+mcp-contact-me.tanguym.fr {
+	encode zstd gzip
+
+	@mcp path /mcp /mcp/*
+	handle @mcp {
+		reverse_proxy 127.0.0.1:8000 {
+			# Désactive le buffering afin de préserver les réponses MCP en streaming.
+			flush_interval -1
+		}
+	}
+
+	handle {
+		root * /var/www/mcp-contact-me
+		file_server
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}
