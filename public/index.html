@@ -184,10 +184,8 @@
         font-size: 12px;
         line-height: 1.5;
       }
-      .protocol-note {
-        margin: 10px 2px 0;
-        color: var(--muted);
-        font-size: 11px;
+      .rpc pre:last-child {
+        margin-bottom: 0;
       }
       .tools {
         display: grid;
@@ -378,11 +376,7 @@
             </div>
           </dl>
           <div class="rpc">
-            <p class="rpc-intro">
-              <strong>Appel distant</strong> (<em>Remote Procedure Call</em>) :
-              un programme exécute une fonction qui tourne sur une autre
-              machine, comme si elle était locale. Le client MCP envoie :
-            </p>
+            <p class="rpc-intro"><strong>Exemple de tool call</strong></p>
             <pre><code>{"jsonrpc": "2.0", "id": 1, "method": "tools/call",
  "params": {"name": "send_email", "arguments": {"subject": "...", "message": "..."}}}</code></pre>
             <p class="rpc-intro">
@@ -391,9 +385,6 @@
             </p>
             <pre><code>{"jsonrpc": "2.0", "id": 1, "result": {...}}</code></pre>
           </div>
-          <p class="protocol-note">
-            Sorties : SMTP sécurisé · Telegram Bot API via HTTPS
-          </p>
         </section>
 
         <section class="tools" aria-label="Outils disponibles">
