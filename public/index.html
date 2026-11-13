@@ -1,163 +1,355 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Référence concise du serveur MCP Contact Me.">
-  <title>MCP Contact Me — Tanguy</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #09100f;
-      --panel: #101b19;
-      --line: #294239;
-      --text: #edf7f2;
-      --muted: #9bb4aa;
-      --accent: #69e6ab;
-      --soft: rgba(105, 230, 171, .1);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      background: radial-gradient(circle at 20% 0, rgba(105,230,171,.12), transparent 30rem), var(--bg);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
-    }
-    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
-    .page { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 48px; }
-    header { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { font-weight: 800; letter-spacing: -.02em; }
-    .brand span { color: var(--accent); font-family: "SFMono-Regular", Consolas, monospace; }
-    .status { color: var(--muted); font-size: 13px; }
-    .status::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
-    main { margin-top: 58px; }
-    .lead { max-width: 650px; margin: 0 0 26px; color: var(--muted); font-size: 18px; }
-    .connection {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px 24px;
-      align-items: center;
-      padding: 17px 19px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--panel);
-    }
-    .label { display: block; margin-bottom: 4px; color: var(--muted); font: 700 10px/1.4 "SFMono-Regular", Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
-    .url { color: var(--accent); overflow-wrap: anywhere; }
-    .auth { color: var(--muted); font-size: 13px; white-space: nowrap; }
-    .tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
-    .tool { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
-    h2 { margin: 0; color: var(--accent); font: 700 18px/1.3 "SFMono-Regular", Consolas, monospace; }
-    .purpose { min-height: 48px; margin: 8px 0 20px; color: var(--muted); font-size: 14px; }
-    dl { margin: 0; }
-    .param { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 8px 0; border-top: 1px solid rgba(41,66,57,.7); font-size: 13px; }
-    dt { color: var(--text); font-family: "SFMono-Regular", Consolas, monospace; }
-    dd { margin: 0; color: var(--muted); }
-    .response { margin-top: 18px; padding: 13px; border-radius: 10px; background: var(--soft); }
-    .response code { display: block; color: var(--accent); font-size: 12px; overflow-wrap: anywhere; }
-    .security {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 14px;
-      align-items: start;
-      margin-top: 18px;
-      padding: 16px 18px;
-      border: 1px solid #e1b84f;
-      border-radius: 14px;
-      background: #17191a;
-    }
-    .security-mark {
-      display: grid;
-      width: 30px;
-      height: 30px;
-      place-items: center;
-      border: 1px solid #e1b84f;
-      border-radius: 9px;
-      color: #f0c75e;
-      font: 800 15px/1 "SFMono-Regular", Consolas, monospace;
-      background: rgba(240, 199, 94, .1);
-    }
-    .security-mark svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-    .security h2 { font-size: 15px; }
-    .security p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
-    .note { margin: 16px 2px 0; color: var(--muted); font-size: 12px; }
-    @media (max-width: 720px) {
-      .page { width: min(100% - 24px, 960px); padding-top: 20px; }
-      main { margin-top: 42px; }
-      .connection, .tools { grid-template-columns: 1fr; }
-      .auth { white-space: normal; }
-      .purpose { min-height: auto; }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <header>
-      <div class="brand"><span>MCP</span> Contact Me</div>
-      <div class="status">Opérationnel</div>
-    </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Référence concise du serveur MCP Contact Me."
+    />
+    <title>MCP Contact Me — Tanguy</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09100f;
+        --panel: #101b19;
+        --line: #294239;
+        --text: #edf7f2;
+        --muted: #9bb4aa;
+        --accent: #69e6ab;
+        --soft: rgba(105, 230, 171, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at 20% 0,
+            rgba(105, 230, 171, 0.12),
+            transparent 30rem
+          ),
+          var(--bg);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.5;
+      }
+      code {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      }
+      .page {
+        width: min(960px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 48px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .brand {
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .brand span {
+        color: var(--accent);
+        font-family: "SFMono-Regular", Consolas, monospace;
+      }
+      .status {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .status::before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin-right: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 12px var(--accent);
+      }
+      main {
+        margin-top: 58px;
+      }
+      .lead {
+        max-width: 650px;
+        margin: 0 0 26px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+      .connection {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px 24px;
+        align-items: center;
+        padding: 17px 19px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--panel);
+      }
+      .label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--muted);
+        font:
+          700 10px/1.4 "SFMono-Regular",
+          Consolas,
+          monospace;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .url {
+        color: var(--accent);
+        overflow-wrap: anywhere;
+      }
+      .auth {
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+      .tool {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--panel);
+      }
+      h2 {
+        margin: 0;
+        color: var(--accent);
+        font:
+          700 18px/1.3 "SFMono-Regular",
+          Consolas,
+          monospace;
+      }
+      .purpose {
+        min-height: 48px;
+        margin: 8px 0 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      dl {
+        margin: 0;
+      }
+      .param {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 12px;
+        padding: 8px 0;
+        border-top: 1px solid rgba(41, 66, 57, 0.7);
+        font-size: 13px;
+      }
+      dt {
+        color: var(--text);
+        font-family: "SFMono-Regular", Consolas, monospace;
+      }
+      dd {
+        margin: 0;
+        color: var(--muted);
+      }
+      .response {
+        margin-top: 18px;
+        padding: 13px;
+        border-radius: 10px;
+        background: var(--soft);
+      }
+      .response code {
+        display: block;
+        color: var(--accent);
+        font-size: 12px;
+        overflow-wrap: anywhere;
+      }
+      .security {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: start;
+        margin-top: 18px;
+        padding: 16px 18px;
+        border: 1px solid #e1b84f;
+        border-radius: 14px;
+        background: #17191a;
+      }
+      .security-mark {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border: 1px solid #e1b84f;
+        border-radius: 9px;
+        color: #f0c75e;
+        font:
+          800 15px/1 "SFMono-Regular",
+          Consolas,
+          monospace;
+        background: rgba(240, 199, 94, 0.1);
+      }
+      .security-mark svg {
+        width: 15px;
+        height: 15px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+      }
+      .security p {
+        margin: 5px 0 0;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 13px;
+      }
+      .security-title {
+        color: #f0c75e;
+        font:
+          700 15px/1.3 "SFMono-Regular",
+          Consolas,
+          monospace;
+      }
+      .note {
+        margin: 16px 2px 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      @media (max-width: 720px) {
+        .page {
+          width: min(100% - 24px, 960px);
+          padding-top: 20px;
+        }
+        main {
+          margin-top: 42px;
+        }
+        .connection,
+        .tools {
+          grid-template-columns: 1fr;
+        }
+        .auth {
+          white-space: normal;
+        }
+        .purpose {
+          min-height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand"><span>MCP</span> Contact Me</div>
+        <div class="status">Opérationnel</div>
+      </header>
 
-    <main>
-      <p class="lead">Deux outils privés permettent aux projets IA d’envoyer un message à Tanguy.</p>
+      <main>
+        <p class="lead">
+          Deux outils privés permettent aux projets IA d’envoyer un message à
+          Tanguy.
+        </p>
 
-      <section class="connection" aria-label="Connexion MCP">
-        <div>
-          <span class="label">Endpoint Streamable HTTP</span>
-          <code class="url">https://mcp-contact-me.tanguym.fr/mcp</code>
-        </div>
-        <div class="auth"><code>Authorization: Bearer &lt;token&gt;</code></div>
-      </section>
-
-      <section class="tools" aria-label="Outils disponibles">
-        <article class="tool">
-          <h2>send_email</h2>
-          <p class="purpose">Envoie un e-mail au nom du projet identifié par son jeton.</p>
-          <span class="label">Entrée</span>
-          <dl>
-            <div class="param"><dt>subject</dt><dd>string requis · 1–160 caractères</dd></div>
-            <div class="param"><dt>message</dt><dd>string requis · 1–3500 caractères</dd></div>
-            <div class="param"><dt>urgency</dt><dd>low | normal | high · défaut normal</dd></div>
-          </dl>
-          <div class="response">
-            <span class="label">Réponse en cas de succès</span>
-            <code>{"status":"sent","channel":"email","project":"&lt;authenticated-project&gt;"}</code>
+        <section class="connection" aria-label="Connexion MCP">
+          <div>
+            <span class="label">Endpoint Streamable HTTP</span>
+            <code class="url">https://mcp-contact-me.tanguym.fr/mcp</code>
           </div>
-        </article>
-
-        <article class="tool">
-          <h2>send_telegram</h2>
-          <p class="purpose">Envoie un Telegram au nom du projet identifié par son jeton.</p>
-          <span class="label">Entrée</span>
-          <dl>
-            <div class="param"><dt>subject</dt><dd>string requis · 1–160 caractères</dd></div>
-            <div class="param"><dt>message</dt><dd>string requis · 1–3500 caractères</dd></div>
-            <div class="param"><dt>urgency</dt><dd>low | normal | high · défaut normal</dd></div>
-          </dl>
-          <div class="response">
-            <span class="label">Réponse en cas de succès</span>
-            <code>{"status":"sent","channel":"telegram","project":"&lt;authenticated-project&gt;"}</code>
+          <div class="auth">
+            <code>Authorization: Bearer &lt;token&gt;</code>
           </div>
-        </article>
-      </section>
+        </section>
 
-      <section class="security" aria-label="Sécurité du serveur">
-        <div class="security-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="5" y="10" width="14" height="10" rx="2"></rect>
-            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-            <path d="M12 14v2"></path>
-          </svg>
-        </div>
-        <div>
-          <h2>Sécurité par conception</h2>
-          <p>HTTPS, jetons propres à chaque projet conservés sous forme d’empreinte SHA-256, quotas dédiés et destinataires fixes. Le service reste isolé derrière Caddy et les journaux ne contiennent ni secrets ni messages.</p>
-        </div>
-      </section>
+        <section class="tools" aria-label="Outils disponibles">
+          <article class="tool">
+            <h2>send_email</h2>
+            <p class="purpose">
+              Envoie un e-mail au nom du projet identifié par son jeton.
+            </p>
+            <span class="label">Entrée</span>
+            <dl>
+              <div class="param">
+                <dt>subject</dt>
+                <dd>string requis · 1–160 caractères</dd>
+              </div>
+              <div class="param">
+                <dt>message</dt>
+                <dd>string requis · 1–3500 caractères</dd>
+              </div>
+              <div class="param">
+                <dt>urgency</dt>
+                <dd>low | normal | high · défaut normal</dd>
+              </div>
+            </dl>
+            <div class="response">
+              <span class="label">Réponse en cas de succès</span>
+              <code
+                >{"status":"sent","channel":"email","project":"&lt;authenticated-project&gt;"}</code
+              >
+            </div>
+          </article>
 
-      <p class="note">Le projet est déduit du jeton · 5 envois/minute · 50 envois/24 h · Destinataires fixes.</p>
-    </main>
-  </div>
-</body>
+          <article class="tool">
+            <h2>send_telegram</h2>
+            <p class="purpose">
+              Envoie un Telegram au nom du projet identifié par son jeton.
+            </p>
+            <span class="label">Entrée</span>
+            <dl>
+              <div class="param">
+                <dt>subject</dt>
+                <dd>string requis · 1–160 caractères</dd>
+              </div>
+              <div class="param">
+                <dt>message</dt>
+                <dd>string requis · 1–3500 caractères</dd>
+              </div>
+              <div class="param">
+                <dt>urgency</dt>
+                <dd>low | normal | high · défaut normal</dd>
+              </div>
+            </dl>
+            <div class="response">
+              <span class="label">Réponse en cas de succès</span>
+              <code
+                >{"status":"sent","channel":"telegram","project":"&lt;authenticated-project&gt;"}</code
+              >
+            </div>
+          </article>
+        </section>
+
+        <section class="security" aria-label="Sécurité du serveur">
+          <div class="security-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+              <path d="M12 14v2"></path>
+            </svg>
+          </div>
+          <div>
+            <p>
+              <span class="security-title">Sécurisé</span> — HTTPS, jetons
+              propres à chaque projet conservés sous forme
+              d’empreinte SHA-256, quotas dédiés et destinataires fixes. Le
+              service reste isolé derrière Caddy et les journaux ne contiennent
+              ni secrets ni messages.
+            </p>
+          </div>
+        </section>
+
+        <p class="note">
+          Le projet est déduit du jeton · 5 envois/minute · 50 envois/24 h ·
+          Destinataires fixes.
+        </p>
+      </main>
+    </div>
+  </body>
 </html>
