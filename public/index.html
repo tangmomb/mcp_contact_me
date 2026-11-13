@@ -149,6 +149,41 @@
         color: var(--text);
         font-size: 13px;
       }
+      .protocol .protocol-desc {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.45;
+      }
+      .protocol-desc code,
+      .rpc-intro code {
+        color: var(--accent);
+      }
+      .rpc {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(41, 66, 57, 0.7);
+      }
+      .rpc-intro {
+        margin: 0 2px 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .rpc-intro strong {
+        color: var(--text);
+      }
+      .rpc pre {
+        margin: 0 0 10px;
+        padding: 10px 12px;
+        border-radius: 9px;
+        background: var(--soft);
+        overflow-x: auto;
+      }
+      .rpc pre code {
+        color: var(--accent);
+        font-size: 12px;
+        line-height: 1.5;
+      }
       .protocol-note {
         margin: 10px 2px 0;
         color: var(--muted);
@@ -313,20 +348,49 @@
             <div class="protocol">
               <dt>Transport</dt>
               <dd>TCP/IP · TLS</dd>
+              <dd class="protocol-desc">
+                La connexion chiffrée entre les deux machines.
+              </dd>
             </div>
             <div class="protocol">
               <dt>Communication</dt>
               <dd>Streamable HTTP · HTTPS</dd>
+              <dd class="protocol-desc">
+                Les requêtes HTTPS qui transportent les messages.
+              </dd>
             </div>
             <div class="protocol">
               <dt>Appel distant</dt>
               <dd>JSON-RPC 2.0</dd>
+              <dd class="protocol-desc">
+                La forme d'un appel de fonction et de sa réponse dans ces
+                messages.
+              </dd>
             </div>
             <div class="protocol">
               <dt>Intégration</dt>
               <dd>Model Context Protocol</dd>
+              <dd class="protocol-desc">
+                Les méthodes disponibles, comme <code>tools/list</code> pour
+                découvrir les outils et <code>tools/call</code> pour en
+                utiliser un.
+              </dd>
             </div>
           </dl>
+          <div class="rpc">
+            <p class="rpc-intro">
+              <strong>Appel distant</strong> (<em>Remote Procedure Call</em>) :
+              un programme exécute une fonction qui tourne sur une autre
+              machine, comme si elle était locale. Le client MCP envoie :
+            </p>
+            <pre><code>{"jsonrpc": "2.0", "id": 1, "method": "tools/call",
+ "params": {"name": "send_email", "arguments": {"subject": "...", "message": "..."}}}</code></pre>
+            <p class="rpc-intro">
+              Le serveur exécute <code>send_email</code> chez lui, puis renvoie
+              le résultat dans le même format, avec le même <code>id</code> :
+            </p>
+            <pre><code>{"jsonrpc": "2.0", "id": 1, "result": {...}}</code></pre>
+          </div>
           <p class="protocol-note">
             Sorties : SMTP sécurisé · Telegram Bot API via HTTPS
           </p>
