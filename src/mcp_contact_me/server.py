@@ -31,14 +31,7 @@ mcp = MCPServer(
 @lru_cache
 def get_registry() -> TokenRegistry:
     settings = get_settings()
-    registry = TokenRegistry(settings.token_registry_path)
-    if settings.api_token:
-        registry.import_token(
-            settings.legacy_project_name,
-            settings.api_token.get_secret_value(),
-            only_if_missing=True,
-        )
-    return registry
+    return TokenRegistry(settings.token_registry_path)
 
 
 @lru_cache

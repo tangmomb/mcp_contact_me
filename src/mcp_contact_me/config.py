@@ -23,8 +23,6 @@ class Settings(BaseSettings):
     allowed_origins: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["http://127.0.0.1:*", "http://localhost:*"]
     )
-    api_token: SecretStr | None = None
-    legacy_project_name: str = "mcp-contact-me"
     token_registry_path: Path = Path("data/tokens.json")
     rate_limit_db_path: Path = Path("data/rate_limits.db")
     audit_log_path: Path = Path("data/audit.log")
