@@ -8,3 +8,5 @@ dist/
 build/
 data/
 COMMANDES_MCP.txt
+.deploy_key
+.deploy_key.pub
