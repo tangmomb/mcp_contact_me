@@ -57,6 +57,31 @@
     dd { margin: 0; color: var(--muted); }
     .response { margin-top: 18px; padding: 13px; border-radius: 10px; background: var(--soft); }
     .response code { display: block; color: var(--accent); font-size: 12px; overflow-wrap: anywhere; }
+    .security {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid #e1b84f;
+      border-radius: 14px;
+      background: #17191a;
+    }
+    .security-mark {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border: 1px solid #e1b84f;
+      border-radius: 9px;
+      color: #f0c75e;
+      font: 800 15px/1 "SFMono-Regular", Consolas, monospace;
+      background: rgba(240, 199, 94, .1);
+    }
+    .security-mark svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .security h2 { font-size: 15px; }
+    .security p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
     .note { margin: 16px 2px 0; color: var(--muted); font-size: 12px; }
     @media (max-width: 720px) {
       .page { width: min(100% - 24px, 960px); padding-top: 20px; }
@@ -115,6 +140,20 @@
             <code>{"status":"sent","channel":"telegram","project":"&lt;authenticated-project&gt;"}</code>
           </div>
         </article>
+      </section>
+
+      <section class="security" aria-label="Sécurité du serveur">
+        <div class="security-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            <path d="M12 14v2"></path>
+          </svg>
+        </div>
+        <div>
+          <h2>Sécurité par conception</h2>
+          <p>HTTPS, jetons propres à chaque projet conservés sous forme d’empreinte SHA-256, quotas dédiés et destinataires fixes. Le service reste isolé derrière Caddy et les journaux ne contiennent ni secrets ni messages.</p>
+        </div>
       </section>
 
       <p class="note">Le projet est déduit du jeton · 5 envois/minute · 50 envois/24 h · Destinataires fixes.</p>
