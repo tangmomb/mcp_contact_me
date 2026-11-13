@@ -118,6 +118,42 @@
         font-size: 13px;
         white-space: nowrap;
       }
+      .protocols {
+        margin-top: 12px;
+        padding: 14px 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(16, 27, 25, 0.72);
+      }
+      .protocol-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .protocol {
+        padding: 8px 10px;
+        border-radius: 9px;
+        background: var(--soft);
+      }
+      .protocol dt {
+        color: var(--muted);
+        font:
+          700 9px/1.4 "SFMono-Regular",
+          Consolas,
+          monospace;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .protocol dd {
+        margin-top: 3px;
+        color: var(--text);
+        font-size: 13px;
+      }
+      .protocol-note {
+        margin: 10px 2px 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
       .tools {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -236,6 +272,9 @@
         .tools {
           grid-template-columns: 1fr;
         }
+        .protocol-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .auth {
           white-space: normal;
         }
@@ -266,6 +305,31 @@
           <div class="auth">
             <code>Authorization: Bearer &lt;token&gt;</code>
           </div>
+        </section>
+
+        <section class="protocols" aria-label="Pile protocolaire">
+          <span class="label">Pile protocolaire</span>
+          <dl class="protocol-grid">
+            <div class="protocol">
+              <dt>Transport</dt>
+              <dd>TCP/IP · TLS</dd>
+            </div>
+            <div class="protocol">
+              <dt>Communication</dt>
+              <dd>Streamable HTTP · HTTPS</dd>
+            </div>
+            <div class="protocol">
+              <dt>Appel distant</dt>
+              <dd>JSON-RPC 2.0</dd>
+            </div>
+            <div class="protocol">
+              <dt>Intégration</dt>
+              <dd>Model Context Protocol</dd>
+            </div>
+          </dl>
+          <p class="protocol-note">
+            Sorties : SMTP sécurisé · Telegram Bot API via HTTPS
+          </p>
         </section>
 
         <section class="tools" aria-label="Outils disponibles">
